@@ -56,7 +56,6 @@ namespace WebCourseBackendProject
                 };
             });
             services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<IAdminRepository, AdminRepository>();
             services.AddTransient<IReceiptRepository, ReceiptRepository>();
             services.AddTransient<ICommodityRepository, CommodityRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();

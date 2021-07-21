@@ -18,7 +18,7 @@ namespace WebCourseBackendProject.Controllers
     {
         private readonly IJWTAuthenticationManager manager;
         private readonly IUserRepository userRepository;
-        public UserController(IJWTAuthenticationManager manager,IUserRepository repo)
+        public UserController(IJWTAuthenticationManager manager, IUserRepository repo)
         {
             this.manager = manager;
             userRepository = repo;
@@ -26,11 +26,21 @@ namespace WebCourseBackendProject.Controllers
 
         [AllowAnonymous]
         [HttpPost]
+        [Route("Register")]
+        public async Task<IActionResult> Register([FromBody] User user)
+        {
+            if (user == null)
+                return BadRequest();
+            return Ok();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
         [Route("Auth")]
         public async Task<IActionResult> Authenticate([FromBody] CredUser user)
         {
-            var token = manager.Autenticate(user.userName, user.password,userRepository);
-            if (token == null) 
+            var token = manager.Autenticate(user.userName, user.password, userRepository);
+            if (token == null)
                 return Unauthorized();
             return Ok(token);
         }

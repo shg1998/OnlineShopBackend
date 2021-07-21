@@ -17,6 +17,7 @@ namespace WebCourseBackendProject.DataAccess.Services
             this.context = onlineShopDbContext;
             categories = onlineShopDbContext.Set<Category>();
         }
+
         public void createCategory(Category category)
         {
             context.Entry(category).State = EntityState.Added;

@@ -18,5 +18,8 @@ namespace WebCourseBackendProject.DataAccess.Models
         [Required]
         [StringLength(50)]
         public string CotName { get; set; }
+
+        [ForeignKey("CategoryId")]
+        public ICollection<Commodity> Commodities { get; set; }
     }
 }

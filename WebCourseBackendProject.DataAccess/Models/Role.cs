@@ -18,5 +18,9 @@ namespace WebCourseBackendProject.DataAccess.Models
         [Required]
         [StringLength(50)]
         public string RoleName { get; set; }
+
+        [ForeignKey("RoleID")]
+        public ICollection<User> Users { get; set; }
+
     }
 }

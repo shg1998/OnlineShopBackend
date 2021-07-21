@@ -21,9 +21,10 @@ namespace WebCourseBackendProject.DataAccess.Models
 
         // TODO : instance of category model
 
-        [ForeignKey("CategoryID")]
-        [Required]
-        public virtual Category ComCategory { get; set; }
+        
+        public int CategoryId { get; set; }
+        public  Category ComCategory { get; set; }
+
 
         [Column("ComPrice")]
         [Required]
@@ -38,7 +39,7 @@ namespace WebCourseBackendProject.DataAccess.Models
         [Required]
         public int ComSaledCount { get; set; }
 
-
-       
+        [ForeignKey("ComId")]
+        public ICollection<Receipt> Receipts { get; set; }
     }
 }

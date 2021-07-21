@@ -40,9 +40,11 @@ namespace WebCourseBackendProject.DataAccess.Models
         [Required]
         public int AccountCharge { get; set; }
 
+        
+        public int RoleID { get; set; }
+        public Role Role { get; set; }
 
-        [ForeignKey("RoleId")]
-        [Required]
-        public virtual Role Role { get; set; }
+        [ForeignKey("UserID")]
+        public ICollection<Receipt> Receipts { get; set; }
     }
 }

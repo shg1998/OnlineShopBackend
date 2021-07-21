@@ -20,5 +20,8 @@ namespace WebCourseBackendProject.DataAccess.Models
         [Required]
         [StringLength(50)]
         public string StatusName { get; set; }
+
+        [ForeignKey("StatusID")]
+        public ICollection<Receipt> Receipts { get; set; }
     }
 }

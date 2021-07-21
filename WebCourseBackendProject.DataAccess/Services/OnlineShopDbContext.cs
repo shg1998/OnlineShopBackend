@@ -17,5 +17,8 @@ namespace WebCourseBackendProject.DataAccess.Services
         public DbSet<Category> categories { get; set; }
         public DbSet<Commodity> commodities { get; set; }
         public DbSet<Receipt> receipts { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<Status> Statuses { get; set; }
+
     }
 }

@@ -11,7 +11,7 @@ using WebCourseBackendProject.Services;
 
 namespace WebCourseBackendProject.Controllers
 {
-    [Authorize]
+
     [Route("api/[controller]")]
     [ApiController]
     public class CommodityController : Controller
@@ -25,6 +25,7 @@ namespace WebCourseBackendProject.Controllers
             CommodityInsertService = new CommodityInsertService();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [Route("createCommodity")]
         public async Task<IActionResult> createCommodity([FromBody] Commodity commodity)
@@ -34,7 +35,7 @@ namespace WebCourseBackendProject.Controllers
         }
 
 
-
+        [Authorize(Roles = "Admin")]
         [HttpGet("SearchCommodity/{name}")]
         public async Task<IActionResult> SearchCommodity(string name)
         {
@@ -53,10 +54,11 @@ namespace WebCourseBackendProject.Controllers
         [Route("create")]
         public async Task<IActionResult> create()
         {
-            //CommodityInsertService.insert(commodityRepository);
+            CommodityInsertService.insert(commodityRepository);
             return Ok("Success");
         }
 
+        [Authorize(Roles = "Admin , User")]
         [HttpGet]
         [Route("getall")]
         public async Task<IActionResult> GetAll()

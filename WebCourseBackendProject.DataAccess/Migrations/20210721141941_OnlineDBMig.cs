@@ -2,7 +2,7 @@
 
 namespace WebCourseBackendProject.DataAccess.Migrations
 {
-    public partial class OnlineShopDbMig : Migration
+    public partial class OnlineDBMig : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -52,7 +52,7 @@ namespace WebCourseBackendProject.DataAccess.Migrations
                     ComId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ComName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    CategoryID = table.Column<int>(type: "int", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
                     ComPrice = table.Column<double>(type: "float", nullable: false),
                     ComRemained = table.Column<int>(type: "int", nullable: false),
                     ComSaledCount = table.Column<int>(type: "int", nullable: false)
@@ -61,8 +61,8 @@ namespace WebCourseBackendProject.DataAccess.Migrations
                 {
                     table.PrimaryKey("PK_commodities", x => x.ComId);
                     table.ForeignKey(
-                        name: "FK_commodities_categories_CategoryID",
-                        column: x => x.CategoryID,
+                        name: "FK_commodities_categories_CategoryId",
+                        column: x => x.CategoryId,
                         principalTable: "categories",
                         principalColumn: "CatId",
                         onDelete: ReferentialAction.Cascade);
@@ -79,14 +79,14 @@ namespace WebCourseBackendProject.DataAccess.Migrations
                     Password = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     UserAddress = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     AccountCharge = table.Column<int>(type: "int", nullable: false),
-                    RoleId = table.Column<int>(type: "int", nullable: false)
+                    RoleID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_users", x => x.UserId);
                     table.ForeignKey(
-                        name: "FK_users_Role_RoleId",
-                        column: x => x.RoleId,
+                        name: "FK_users_Role_RoleID",
+                        column: x => x.RoleID,
                         principalTable: "Role",
                         principalColumn: "RoleId",
                         onDelete: ReferentialAction.Cascade);
@@ -100,7 +100,7 @@ namespace WebCourseBackendProject.DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ComCount = table.Column<int>(type: "int", nullable: false),
                     ComId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: true),
+                    UserID = table.Column<int>(type: "int", nullable: false),
                     FinalPrice = table.Column<double>(type: "float", nullable: false),
                     ReceiptDate = table.Column<long>(type: "bigint", nullable: false),
                     ReceiptTrackingCode = table.Column<double>(type: "float", nullable: false),
@@ -122,17 +122,17 @@ namespace WebCourseBackendProject.DataAccess.Migrations
                         principalColumn: "StatusID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_receipts_users_UserId",
-                        column: x => x.UserId,
+                        name: "FK_receipts_users_UserID",
+                        column: x => x.UserID,
                         principalTable: "users",
                         principalColumn: "UserId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_commodities_CategoryID",
+                name: "IX_commodities_CategoryId",
                 table: "commodities",
-                column: "CategoryID");
+                column: "CategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_receipts_ComId",
@@ -145,14 +145,15 @@ namespace WebCourseBackendProject.DataAccess.Migrations
                 column: "StatusID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_receipts_UserId",
+                name: "IX_receipts_UserID",
                 table: "receipts",
-                column: "UserId");
+                column: "UserID");
+
 
             migrationBuilder.CreateIndex(
-                name: "IX_users_RoleId",
+                name: "IX_users_RoleID",
                 table: "users",
-                column: "RoleId");
+                column: "RoleID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -14,22 +14,29 @@ namespace WebCourseBackendProject.Infra.Auth
 {
     public class JWTAuthenticationManager : IJWTAuthenticationManager
     {
-        private  List<User> users = new List<User>();
+        private List<User> users = new List<User>();
         private readonly string key;
+        private string _role;
 
         public JWTAuthenticationManager(string key)
         {
             this.key = key;
-            
-        }
 
-        
-        public string Autenticate(string userName, string Password,IUserRepository repo)
+        }
+        public string Autenticate(string userName, string Password, IUserRepository repo)
         {
             users = repo.GetAllUsers().ToList();
             if (!users.Any(u => u.UserName == userName && u.Password == Password))
             {
                 return null;
+            }
+            else
+            {
+                User ConcreteUser = users.Where(x => x.UserName == userName && x.Password == Password).FirstOrDefault();
+                if (ConcreteUser.RoleID == 1)
+                    _role = "User";
+                else
+                    _role = "Admin";
             }
             var tokenHandler = new JwtSecurityTokenHandler();
             var tokenKey = Encoding.ASCII.GetBytes(key);
@@ -37,7 +44,8 @@ namespace WebCourseBackendProject.Infra.Auth
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name,userName)
+                    new Claim(ClaimTypes.Name,userName),
+                    new Claim(ClaimTypes.Role,_role)
                 }),
                 Expires = DateTime.UtcNow.AddHours(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey),

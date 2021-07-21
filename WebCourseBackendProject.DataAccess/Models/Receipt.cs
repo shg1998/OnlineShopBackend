@@ -13,19 +13,17 @@ namespace WebCourseBackendProject.DataAccess.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Required]
         public int ReceiptId { get; set; }
-        
+
         [Column("ComCount")]
         [Required]
         public int ComCount { get; set; }
 
 
-        [ForeignKey("ComId")]
-        [Required]
-        public virtual Commodity Commodity  { get; set; }
+        public int ComId { get; set; }
+        public Commodity Commodity { get; set; }
 
-        [Column("UserId")]
-        [Required]
-        public virtual User user{ get; set; }
+        public int UserID { get; set; }
+        public User user { get; set; }
 
         [Column("FinalPrice")]
         [Required]
@@ -40,8 +38,8 @@ namespace WebCourseBackendProject.DataAccess.Models
         [Required]
         public double ReceiptTrackingCode { get; set; }
 
-        [ForeignKey("StatusID")]
-        [Required]
-        public virtual Status ReceiptStatus { get; set; }
+
+        public int StatusID { get; set; }
+        public Status ReceiptStatus { get; set; }
     }
 }
