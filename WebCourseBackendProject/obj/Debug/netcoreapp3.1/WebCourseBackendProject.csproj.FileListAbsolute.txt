@@ -83,3 +83,4 @@ C:\Users\H3\Desktop\OnlineShopBackend\WebCourseBackendProject\obj\Debug\netcorea
 C:\Users\H3\Desktop\OnlineShopBackend\WebCourseBackendProject\obj\Debug\netcoreapp3.1\WebCourseBackendProject.dll
 C:\Users\H3\Desktop\OnlineShopBackend\WebCourseBackendProject\obj\Debug\netcoreapp3.1\WebCourseBackendProject.pdb
 C:\Users\H3\Desktop\OnlineShopBackend\WebCourseBackendProject\obj\Debug\netcoreapp3.1\WebCourseBackendProject.genruntimeconfig.cache
+C:\Users\H3\Desktop\OnlineShopBackend\WebCourseBackendProject\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
