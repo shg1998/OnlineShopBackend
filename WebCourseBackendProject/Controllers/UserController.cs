@@ -27,11 +27,21 @@ namespace WebCourseBackendProject.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("Register")]
-        public async Task<IActionResult> Register([FromBody] User user)
+        public async Task<IActionResult> Register([FromBody] RegisterUserInfos userInfo)
         {
-            if (user == null)
+            if (userInfo == null)
                 return BadRequest();
-            return Ok();
+            User user = new User()
+            {
+                FullName = userInfo.FullName,
+                AccountCharge = 0,
+                Password = userInfo.Password,
+                RoleID = 1,
+                UserAddress = userInfo.Address,
+                UserName = userInfo.UserName,
+            };
+            userRepository.CreateUser(user);
+            return Ok("Success");
         }
 
         [AllowAnonymous]
