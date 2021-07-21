@@ -43,8 +43,8 @@ namespace WebCourseBackendProject.Controllers
             userRepository.CreateUser(user);
             return Ok("Success");
         }
-
-        [AllowAnonymous]
+        //{"userName":"admin","password":"admin"}
+    [AllowAnonymous]
         [HttpPost]
         [Route("Auth")]
         public async Task<IActionResult> Authenticate([FromBody] CredUser user)

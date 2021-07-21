@@ -32,6 +32,12 @@ namespace WebCourseBackendProject
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
             services.AddDbContext<DataAccess.Services.OnlineShopDbContext>
           (o => o.UseSqlServer(Configuration.
            GetConnectionString("OnlineShopDatabase")));
@@ -59,12 +65,14 @@ namespace WebCourseBackendProject
             services.AddTransient<IReceiptRepository, ReceiptRepository>();
             services.AddTransient<ICommodityRepository, CommodityRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
-
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors("MyPolicy");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
