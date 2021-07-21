@@ -1,0 +1,9 @@
+C:\Users\H3\Desktop\OnlineShopBackend\WebCourseBackendProject.DataAccess\bin\Debug\netcoreapp3.1\WebCourseBackendProject.DataAccess.deps.json
+C:\Users\H3\Desktop\OnlineShopBackend\WebCourseBackendProject.DataAccess\bin\Debug\netcoreapp3.1\WebCourseBackendProject.DataAccess.dll
+C:\Users\H3\Desktop\OnlineShopBackend\WebCourseBackendProject.DataAccess\bin\Debug\netcoreapp3.1\WebCourseBackendProject.DataAccess.pdb
+C:\Users\H3\Desktop\OnlineShopBackend\WebCourseBackendProject.DataAccess\obj\Debug\netcoreapp3.1\WebCourseBackendProject.DataAccess.csproj.AssemblyReference.cache
+C:\Users\H3\Desktop\OnlineShopBackend\WebCourseBackendProject.DataAccess\obj\Debug\netcoreapp3.1\WebCourseBackendProject.DataAccess.AssemblyInfoInputs.cache
+C:\Users\H3\Desktop\OnlineShopBackend\WebCourseBackendProject.DataAccess\obj\Debug\netcoreapp3.1\WebCourseBackendProject.DataAccess.AssemblyInfo.cs
+C:\Users\H3\Desktop\OnlineShopBackend\WebCourseBackendProject.DataAccess\obj\Debug\netcoreapp3.1\WebCourseBackendProject.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\H3\Desktop\OnlineShopBackend\WebCourseBackendProject.DataAccess\obj\Debug\netcoreapp3.1\WebCourseBackendProject.DataAccess.dll
+C:\Users\H3\Desktop\OnlineShopBackend\WebCourseBackendProject.DataAccess\obj\Debug\netcoreapp3.1\WebCourseBackendProject.DataAccess.pdb
