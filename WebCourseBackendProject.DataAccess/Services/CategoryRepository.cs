@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using WebCourseBackendProject.DataAccess.Models;
 using WebCourseBackendProject.DataAccess.Repositories;
@@ -8,29 +10,41 @@ namespace WebCourseBackendProject.DataAccess.Services
 {
     public class CategoryRepository : ICategoryRepository
     {
+        private OnlineShopDbContext context;
+        private DbSet<Category> categories;
+        public CategoryRepository(OnlineShopDbContext onlineShopDbContext)
+        {
+            this.context = onlineShopDbContext;
+            categories = onlineShopDbContext.Set<Category>();
+        }
         public void createCategory(Category category)
         {
-            throw new NotImplementedException();
+            context.Entry(category).State = EntityState.Added;
+            context.SaveChanges();
         }
 
         public void DeleteCategory(int id)
         {
-            throw new NotImplementedException();
+            Category cat = GetACategory(id);
+            categories.Remove(cat);
+            context.SaveChanges();
         }
 
         public void DeleteCategory(Category category)
         {
-            throw new NotImplementedException();
+            Category caat = category;
+            categories.Remove(caat);
+            context.SaveChanges();
         }
 
         public Category GetACategory(int id)
         {
-            throw new NotImplementedException();
+            return categories.SingleOrDefault(s => s.CatId == id);
         }
 
         public List<Category> GetAllCategories()
         {
-            throw new NotImplementedException();
+            return categories.ToList();
         }
 
         public void UpdateCategory(int id, Category category)

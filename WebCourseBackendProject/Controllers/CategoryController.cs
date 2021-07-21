@@ -9,6 +9,8 @@ using WebCourseBackendProject.DataAccess.Repositories;
 
 namespace WebCourseBackendProject.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class CategoryController : Controller
     {
         private readonly ICategoryRepository categoryRepository;
@@ -25,5 +27,22 @@ namespace WebCourseBackendProject.Controllers
             categoryRepository.createCategory(category);
             return Ok("Success");
         }
+
+        [HttpGet]
+        [Route("getall")]
+        public async Task<IActionResult> GetAll()
+        {
+            // Default : Order by descending with SaleCount property
+            List<Category> final = (categoryRepository.GetAllCategories().ToList());
+            try
+            {
+                return Ok(final);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
     }
 }
