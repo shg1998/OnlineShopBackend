@@ -49,9 +49,23 @@ namespace WebCourseBackendProject.DataAccess.Services
             return users.SingleOrDefault(s => s.UserId == id);
         }
 
-        public void UpdateUser(int id, User user)
+        public User GetAUserWithUName(string username)
         {
-            throw new NotImplementedException();
+            List<User> userss = new List<User>();
+            List<User> ConcreteList = new List<User>();
+            userss = GetAllUsers();
+            foreach (var item in userss)
+            {
+                if (item.UserName == username)
+                    ConcreteList.Add(item);
+            }
+            return ConcreteList[ConcreteList.Count - 1];
+        }
+
+        public void UpdateUser( User user)
+        {
+            context.users.Update(user);
+            context.SaveChanges();
         }
     }
 }

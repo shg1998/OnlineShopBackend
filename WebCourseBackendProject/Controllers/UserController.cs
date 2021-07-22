@@ -24,6 +24,24 @@ namespace WebCourseBackendProject.Controllers
             userRepository = repo;
         }
 
+
+        [Authorize(Roles = "Admin , User")]
+        [HttpGet("GetUserInformation/{id}")]
+        public async Task<IActionResult> GetUserInformation(int id)
+        {
+            // Default : Order by descending with SaleCount property
+            User user = new User();
+            user = userRepository.GetAUserById(id);
+            try
+            {
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
         [AllowAnonymous]
         [HttpPost]
         [Route("Register")]
@@ -44,7 +62,7 @@ namespace WebCourseBackendProject.Controllers
             return Ok("Success");
         }
         //{"userName":"admin","password":"admin"}
-    [AllowAnonymous]
+        [AllowAnonymous]
         [HttpPost]
         [Route("Auth")]
         public async Task<IActionResult> Authenticate([FromBody] CredUser user)
@@ -52,7 +70,22 @@ namespace WebCourseBackendProject.Controllers
             var token = manager.Autenticate(user.userName, user.password, userRepository);
             if (token == null)
                 return Unauthorized();
-            return Ok(token);
+            User userConcrete = userRepository.GetAUserWithUName(user.userName);
+            FinalUserPattern finalUserPattern = new FinalUserPattern()
+            {
+                user = userConcrete,
+                Token = token
+            };
+            return Ok(finalUserPattern);
+        }
+
+        [Authorize(Roles = "Admin , User")]
+        [HttpPost]
+        [Route("UpdateUser")]
+        public async Task<IActionResult> UpdateUser([FromBody] User user)
+        {
+            userRepository.UpdateUser(user);
+            return Ok("Success!");
         }
     }
 }

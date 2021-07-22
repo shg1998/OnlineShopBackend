@@ -44,6 +44,7 @@ namespace WebCourseBackendProject.DataAccess.Models
         public int RoleID { get; set; }
         public Role Role { get; set; }
 
+
         [ForeignKey("UserID")]
         public ICollection<Receipt> Receipts { get; set; }
     }

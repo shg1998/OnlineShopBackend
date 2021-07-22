@@ -55,5 +55,7 @@ namespace WebCourseBackendProject.Infra.Auth
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
         }
+
+
     }
 }

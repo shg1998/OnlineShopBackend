@@ -35,7 +35,7 @@ namespace WebCourseBackendProject.Controllers
         }
 
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin , User")]
         [HttpGet("SearchCommodity/{name}")]
         public async Task<IActionResult> SearchCommodity(string name)
         {

@@ -9,6 +9,7 @@ namespace WebCourseBackendProject.DataAccess.Repositories
     {
         List<User> GetAllUsers();
 
+        User GetAUserWithUName(string  username);
         void CreateUser(User user);
 
         User GetAUserById(int id);
@@ -17,7 +18,7 @@ namespace WebCourseBackendProject.DataAccess.Repositories
 
         void DeleteUser(User user);
 
-        void UpdateUser(int id, User user);
+        void UpdateUser(User user);
         
     }
 }

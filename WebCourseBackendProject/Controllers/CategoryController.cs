@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -28,12 +29,28 @@ namespace WebCourseBackendProject.Controllers
             return Ok("Success");
         }
 
+        [Authorize(Roles = "Admin , User")]
         [HttpGet]
         [Route("getall")]
         public async Task<IActionResult> GetAll()
         {
             // Default : Order by descending with SaleCount property
             List<Category> final = (categoryRepository.GetAllCategories().ToList());
+            try
+            {
+                return Ok(final);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        [HttpGet("getById/{id}")]
+        public async Task<IActionResult> getById(int id)
+        {
+            // Default : Order by descending with SaleCount property
+            Category final = (categoryRepository.GetACategory(id));
             try
             {
                 return Ok(final);
